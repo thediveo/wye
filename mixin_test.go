@@ -47,12 +47,17 @@ var _ = Describe("mixing podman connection with other contexts", func() {
 		})
 	})
 
+	It("mixes short-lived context into long-living context", func() {
+		longerctx, cancel := Mixin(longctx, context.Background())
+		defer cancel()
+		Expect(longerctx.Value(canarykey)).To(Equal(canaryval))
+	})
+
 	It("doesn't cancel the original context if mix-in isn't cancellable", func() {
 		longerctx, cancel := Mixin(longctx, context.Background())
 		cancel()
 		Expect(longctx.Err()).To(BeNil())
 		Expect(longerctx.Err()).To(BeNil())
-		Expect(longerctx.Value(canarykey)).To(Equal(canaryval))
 	})
 
 	When("mix-in context gets cancelled", func() {

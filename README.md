@@ -7,18 +7,40 @@
 ![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
 [![Go Report Card](https://goreportcard.com/badge/github.com/thediveo/wye)](https://goreportcard.com/report/github.com/thediveo/wye)
 
-When you need to mix in one
-[context.Context](https://pkg.go.dev/context#Context) into another Context.
+When you need to mix in one (shorter-lived service)
+[context.Context](https://pkg.go.dev/context#Context) into another long-living
+context: kind of a “Y” joint. The opposite of Go's “⅄” pattern of deriving new
+contexts from existing contexts.
 
 Why would you ever want to do this?
 
-Because “someone” terribly messed up an API, grossly misusing contexts on them
-design spree.
+Because “_someone_” terribly messed up an API, grossly misusing contexts on them
+REST API client design spree.
 
 Such as [Podman](https://github.com/containers/podman)'s REST API client
 bindings.
 
 ([_obligatory Captain Picard meme reference_](https://knowyourmeme.com/memes/facepalm))
+
+## Installation
+
+```bash
+go get github.com/thediveo/wye
+```
+
+## Supported Go Versions
+
+`wye` supports versions of Go that are noted by the [Go release
+policy](https://golang.org/doc/devel/release.html#policy), that is, _N_ and
+_N_-1 major versions.
+
+## Miscellaneous
+
+- to view the package documentation _locally_:
+  - either: `make pkgsite`,
+  - or, in VSCode (using the VSCode-integrated simple browser): “Tasks: Run
+    Task” ⇢ “View Go module documentation”.
+- `make` shows the available make targets.
 
 ## Fun Fact
 

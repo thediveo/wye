@@ -16,10 +16,11 @@ package wye
 
 import "context"
 
-// Mixin mixes a typically shorter-lived (service, etc.) context specified as
-// “shortctx” into a long-living context “longctx”, returning a “mixed” context.
-// This new “mixed” context gets the deadline (if any) and cancellation of the
-// mixed-in “shortctx” in addition to the .
+// Mixin mixes a typically shorter-lived (service, etc.) context passed in
+// “shortctx” into a long-living context “longctx”, returning a derived “mixed”
+// context. The “mixed” context is derived from the long-living context and
+// additionally gets the deadline (if any) and cancellation of the mixed-in
+// “shortctx”.
 //
 // Please note that it is essential to always call the additionally returned
 // cancel function in order to not leak go routines. Calling this cancel
